@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <title>Notebook</title>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="js/jquery-mobile/jquery.mobile-1.4.5.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+  <div data-role="page" id="home">
+    <div data-role="panel" id="sidebar" data-swipe-close="true" data-display="overlay">
+      <ul data-role="listview">
+        <li>
+          <h3 class="txt-center">Table of Contents</h3></li>
+        <li><a href="index.html" data-ajax="false" data-rel="close"><h3>Home</h3></a></li>
+        <li><a href="notecreator.html" data-ajax="false"><h3>Create a New Page</h3></a></li>
+        <li><a href="study.html" data-ajax="false"><h3>Notebook</h3></a></li>
+        <li><a href="about.html" data-ajax="false"><h3>About</h3></a></li>
+        <li><a href="settings.html" data-ajax="false"><h3>Settings</h3></a></li>
+    </div>
+    <div data-role="header" id="page-navbar">
+      <a href="#sidebar" class="ui-btn ui-icon-bars ui-corner-all ui-btn-icon-notext"></a>
+      <h1>Notebook</h1>
+      <a href="notecreator.html" class="ui-btn ui-icon-plus ui-corner-all ui-btn-icon-notext" data-ajax="false"></a>
+    </div>
+    <div data-role="main" class="ui-content">
+      <div class="filters input-group">
+        <form action="#" data-ajax="false">
+          <input name="filterClass" class="form-control" placeholder="Category name..." data-role="none">
+          <div class="minor-padding inline">
+            <input type="submit" class="btn btn-info" value="Search">
+          </div>
+          <a class="btn btn-link" role="button" href="#advanced">Advanced filters</a>
+        </form>
+      </div>
+      <form class="ui-filterable">
+        <input id="recents-filter" class="note-filter" data-type="search">
+      </form>
+      <ul id="note-list" data-role="listview" data-filter="true" data-input="#recents-filter"></ul>
+    </div>
+    <div data-role="footer" data-position="fixed" data-fullscreen="true" data-tap-toggle="false">
+      <h3>Searching for a note? Try the <a href="#advanced">Advanced Filters <span class="glyphicon glyphicon-filter" aria-hidden="true"></span></a></h3>
+    </div>
+  </div>
+  <div data-role="page" data-dialog="true" id="advanced">
+    <div data-role="header">
+      <h2>Advanced filters.</h2>
+    </div>
+    <div data-role="main" class="ui-content">
+      <form action="study.html" data-ajax="false">
+        <label for="class">Class: </label>
+        <input name="class" type="text">
+        <label for="section">Section: </label>
+        <input name="filterSection" type="text">
+        <!--
+        <label for="filterDateb">Created before...</label>
+        <input type="date" name="filterDateb" placeholder="MM/DD/YYYY">
+        <label for="filterDatea">Created after...</label>
+        <input type="date" name="filterDatea" placeholder="MM/DD/YYYY">
+        -->
+        <label for="filterMethod2"><input type="checkbox" name="filterMethod" value="on"> Search through contents.</label>
+        <hr>
+        <h4 class="txt-center"><br>Exclude all not marked as...</h4>
+        <fieldset class="txt-center" data-role="controlgroup" data-type="horizontal">
+          <label for="favourite"> Favourite
+            <input type="checkbox" name="favourite" id="fav">
+          </label>
+          <label for="important"> Important
+            <input type="checkbox" name="important" id="imp">
+          </label>
+          <label for="Minor"> Minor
+            <input type="checkbox" name="minor" id="min">
+          </label>
+        </fieldset><br><br>
+        <input class="btn btn-lg btn-info btn-block" type="submit" value="Find your note">
+      </form>
+    </div>
+  </div>
+  <script src="cordova.js"></script>
+  <script src="js/jquery-1.11.1.min.js"></script>
+  <script src="js/jquery-mobile/jquery.mobile-1.4.5.min.js"></script>
+  <script src="css/bootstrap/js/bootstrap.min.js"></script>
+  <script src="js/scripts.js"></script>
+  <script src="js/storage.js"></script>
+</body>
+
+</html>

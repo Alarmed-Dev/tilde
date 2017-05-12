@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <title>Reading your Note</title>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="js/jquery-mobile/jquery.mobile-1.4.5.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+  <div data-role="page" id="home">
+    <div data-role="panel" id="sidebar" data-swipe-close="true" data-display="overlay">
+      <ul data-role="listview">
+        <li>
+          <h3 class="txt-center">Table of Contents</h3></li>
+        <li><a href="index.html" data-ajax="false" data-rel="close"><h3>Home</h3></a></li>
+        <li><a href="notecreator.html" data-ajax="false"><h3>Create a New Page</h3></a></li>
+        <li><a href="study.html" data-ajax="false"><h3>Notebook</h3></a></li>
+        <li><a href="about.html" data-ajax="false"><h3>About</h3></a></li>
+        <li><a href="settings.html" data-ajax="false"><h3>Settings</h3></a></li>
+    </div>
+
+    <div data-role="header" id="page-navbar">
+      <a href="#sidebar" class="ui-btn ui-icon-bars ui-corner-all ui-btn-icon-notext"></a>
+      <h1 id="header">Studying</h1>
+      <a href="notecreator.html" class="ui-btn ui-icon-plus ui-corner-all ui-btn-icon-notext" data-ajax="false"></a>
+      <div data-role="navbar" id="editor-navbar">
+        <ul>
+          <li><a href="#openNote" data-rel="popup"><span class="hidden-xs">Open </span><span class="glyphicon glyphicon-folder-open"></span></a></li>
+          <li><a onclick="shareNote($('#ro-note-header').text(), $('#ro-note-body').text())"><span class="hidden-xs">Share </span><span class="glyphicon glyphicon-share"></span></a></li>
+          <li><a onclick="moveToReadWrite()"><span class="hidden-xs">Edit </span><span class="glyphicon glyphicon-pencil"></span></a></li>
+          <li><a onclick="deleteNote(getURLParameter('title'))"><span class="hidden-xs">Delete </span><span class="glyphicon glyphicon-trash"></span></a></li>
+        </ul>
+      </div>
+      <div data-role="popup" class="open-note" id="openNote">
+        <h4>Open another note in the editor.</h4>
+        <form action="readonly.html" data-ajax="false">
+          <input type="text" name="title" placeholder="Note title..." required>
+          <input type="submit" class="btn btn-primary btn-block">
+        </form>
+      </div>
+    </div>
+
+    <div data-role="main" class="ui-content main-page">
+      <div id="readonly-note">
+
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <h1>
+                                <span id="ro-note-header" class="inline pacifico" data-role="none"></span> <span class="hidden-xs">~</span>
+                                <small>
+                                    <span class="noborder" id="ro-note-class"></span>,
+                                    <span class="noborder" id="ro-note-section"></span>
+                                </small><br>
+                            </h1>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12 align-right hidden-xs">
+              <h3 id="ro-inittime"></h3>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div id="bookmark-cont">
+          <h3><a id="ro-note-bookmark"></a></h3>
+        </div>
+        <div id="agenda-cont">
+          <h4 id="ro-note-agenda"></h4>
+        </div>
+        <br>
+        <fieldset class="txt-center" data-role="controlgroup" data-type="horizontal">
+          <label for="favourite"> Favourite
+                    <input type="checkbox" name="favourite" id="fav" onchange="changeStatus()">
+                  </label>
+          <label for="important"> Important
+                    <input type="checkbox" name="important" id="imp" onchange="changeStatus()">
+                  </label>
+          <label for="minor"> Minor
+                    <input type="checkbox" name="minor" id="min" onchange="changeStatus()">
+                  </label>
+        </fieldset>
+        <br>
+        <div id="ro-note-body">
+          Start taking notes...
+        </div>
+      </div>
+    </div>
+
+    <div data-role="footer" data-position="fixed" data-fullscreen="true" data-tap-toggle="false">
+      <h3>This note is in 'read only' mode. <a href="#" onclick="moveToReadWrite()">Edit it <span class="glyphicon glyphicon-pencil"></span></a></h3>
+    </div>
+  </div>
+
+  <script src="cordova.js"></script>
+  <script src="js/jquery-1.11.1.min.js"></script>
+  <script src="js/jquery-mobile/jquery.mobile-1.4.5.min.js"></script>
+  <script src="css/bootstrap/js/bootstrap.min.js"></script>
+  <script src="js/scripts.js"></script>
+  <script src="js/marked.min.js"></script>
+  <script src="js/storage.js"></script>
+  <script>
+    $(window).on("noteretrieved", function() {
+      console.log("~ Note retrieved");
+      $("[data-note]").attr("href", function() {
+        return "readonly.html?title=" + encode($(this).attr("data-note"));
+      });
+      $("[data-note]").attr("data-ajax", false);
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>About</title>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="js/jquery-mobile/jquery.mobile-1.4.5.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+  <div data-role="page" id="home">
+    <div data-role="panel" id="sidebar" data-swipe-close="true" data-display="overlay">
+      <ul data-role="listview">
+        <li>
+          <h3 class="txt-center">Table of Contents</h3></li>
+        <li><a href="index.html" data-ajax="false"><h3>Home</h3></a></li>
+        <li><a href="notecreator.html" data-ajax="false"><h3>Create a New Page</h3></a></li>
+        <li><a href="study.html" data-ajax="false"><h3>Notebook</h3></a></li>
+        <li><a href="about.html" data-ajax="false" data-rel="close"><h3>About</h3></a></li>
+        <li><a href="settings.html" data-ajax="false"><h3>Settings</h3></a></li>
+      </ul>
+    </div>
+
+    <div data-role="header" id="page-navbar">
+      <a href="#sidebar" class="ui-btn ui-icon-bars ui-corner-all ui-btn-icon-notext"></a>
+      <h1>About</h1>
+      <a href="notecreator.html" class="ui-btn ui-icon-plus ui-corner-all ui-btn-icon-notext" data-ajax="false"></a>
+    </div>
+
+    <div data-role="main" class="ui-content margin">
+      <h1 class="pacifico">Tilde</h1>
+      <h3>The students note taking application of the future.</h3>
+      <p>
+        Tilde is a student-orientated, hyper-organized note taking application for power users, created as a school project.
+      </p>
+
+      <p>Version 1.0</p>
+
+      <h3>What is Tilde?</h3>
+
+      <p>
+        Tilde was built on the foundational idea of an "eNotebook", or a hardware / software replacement for a traditional notebook used in school environments.
+      </p>
+      <p>
+        It all started as a school project where students were tasked with creating and marketing a product that would be sold at a "marketplace" the following month, where all of the profits would go to charity. A similar competition was introduced the group
+        earlier that year where the project started, though things didn't play out in the end.
+      </p>
+      <p>
+        Already having a half complete product, the project was continued as Tilde, leading us to today. Ditch the notebooks and use your mobile device.
+      </p>
+
+      <h3>Project Leaders</h3>
+      <ul>
+        <li>Nathan Scott ~ Developer</li>
+        <li>Alex Henwood ~ Marketing</li>
+        <li>Connor Yerxa ~ Graphic Artist</li>
+      </ul>
+      <br>
+      <h4>Special thanks to...</h4>
+      <ul>
+        <li>
+          All of the individuals who signed up to be software testers.
+        </li>
+        <li>
+          Our teachers, for offering us with the opportunity to create this project.
+          <li>
+            The Apache Foundation; jQuery and Bootstrap developers for their efforts in creating some of the technologies used in Tilde.
+          </li>
+      </ul>
+    </div>
+    <div data-role="footer" data-position="fixed" data-fullscreen="true" data-tap-toggle="false"></div>
+  </div>
+
+  <script src="cordova.js"></script>
+  <script src="js/jquery-1.11.1.min.js"></script>
+  <script src="js/jquery-mobile/jquery.mobile-1.4.5.min.js"></script>
+  <script src="css/bootstrap/js/bootstrap.min.js"></script>
+  <script src="js/scripts.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/settings.js"></script>
+</body>
+
+</html>
