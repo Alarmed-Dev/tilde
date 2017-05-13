@@ -3,15 +3,16 @@
 <html>
 
 <head>
-  <title>Note Editor</title>
+  <title>New Note</title>
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
   <meta charset="utf-8">
-  <link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="js/jquery-mobile/jquery.mobile-1.4.5.min.css">
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="../../css/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../js/jquery-mobile/jquery.mobile-1.4.5.min.css">
+  <link rel="stylesheet" href="../../css/styles.css">
 </head>
 
 <body>
+
   <div data-role="page" id="home">
     <div data-role="panel" id="sidebar" data-swipe-close="true" data-display="overlay">
       <ul data-role="listview">
@@ -26,14 +27,13 @@
 
     <div data-role="header" id="page-navbar">
       <a href="#sidebar" class="ui-btn ui-icon-bars ui-corner-all ui-btn-icon-notext"></a>
-      <h1 id="header">Note Editor</h1>
+      <h1 class="montserrat">New note</h1>
       <a href="notecreator.html" class="ui-btn ui-icon-plus ui-corner-all ui-btn-icon-notext" data-ajax="false"></a>
       <div data-role="navbar" id="editor-navbar">
         <ul>
-          <li><a href="#openNote" data-rel="popup"><span class="hidden-xs">Open </span><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span></a></li>
-          <li><a onclick="shareNote($('#rw-note-header').text(), $('#rw-note-body').val())"><span class="hidden-xs">Share </span><span class="glyphicon glyphicon-share"></span></a></li>
-          <li onclick="moveToReadOnly()"><a href="#"><span class="hidden-xs">Render </span><span class="glyphicon glyphicon-eye-open"></span></a></li>
-          <li id="save" onclick="addUpdatedVersion()"><a href="#"><span class="hidden-xs">Save </span><span class="glyphicon glyphicon-floppy-disk"></span></a></li>
+          <li><a href="#openNote" data-rel="popup"><span class="hidden-xs">Open </span><span class="glyphicon glyphicon-folder-open"></span></a></li>
+          <li><a onclick="shareNote($('#note-header').text(), $('#note-body').val())"><span class="hidden-xs">Share </span><span class="glyphicon glyphicon-share"></span></a></li>
+          <li id="save"><a onclick="saveNote()"><span class="hidden-xs">Save </span><span class="glyphicon glyphicon-floppy-disk"></span></a></li>
         </ul>
       </div>
       <div data-role="popup" class="open-note" id="openNote">
@@ -44,6 +44,7 @@
         </form>
       </div>
     </div>
+
     <div class="syntax-guide" data-role="panel" id="syntax" data-swipe-close="true" data-display="overlay" data-postion-fixed="true">
       <p>
         One of the things that makes Tilde stand out from other note taking applications is that it's willing to sacrifice a small amount of ease-of-use to allow you to get more out of what you're working on. This is why Tilde supports formatting using Markdown,
@@ -98,12 +99,11 @@ When taking notes in Tilde, you can do all kinds of cool things, like __bolding 
       </p>
 
       <code>
-              [An external link](https://www.example.com) can be rendered
-              using Markdown, though &lt;a data-note=&quot;Note title&quot;&gt;internal links&lt;/a&gt; have to be done in vanilla HTML.
+              [An external link](https://www.example.com) can be rendered using Markdown, though &lt;a data-note=&quot;Note title&quot;&gt;internal links&lt;/a&gt; have to be done in vanilla HTML.
             </code>
 
       <p>
-        <br><a href="https://www.example.com">An external link</a> can be rendered using Markdown, though <a href="#">internal links</a> have to be done in vanilla HTML.
+        <br><a href=”https://www.example.com”>An external link</a> can be rendered using Markdown, though <a href="#">internal links</a> have to be done in vanilla HTML.
       </p>
       <h2>Ordered and unordered lists</h2>
 
@@ -178,41 +178,46 @@ Let’s say this is the content of the `index.html` file:<br>
     </div>
 
     <div data-role="main" class="ui-content main-page">
-      <div id="readwrite-note">
-
-        <h3 id="date-today"></h3>
-        <h1 class="noborder pacifico inline" id="rw-note-header" onblur="feildReset('#rw-note-header', 'title')" contenteditable></h1>
-        <h3><span class="noborder category inline" id="rw-note-class"
-                  onblur="feildReset('#rw-note-class', 'class', 'All notes')"
-                  contenteditable></span>,</h3>
-        <h3 class="noborder category" id="rw-note-section" onblur="feildReset('#rw-note-section', 'section', 'General')" contenteditable></h3>
-        <br>
-        <p>Tags: <span class="noborder" id="rw-note-tags" onblur="feildReset('#note-tags', 'tags')" data-role="none" contenteditable></span></p>
-        <br>
-        <div id="bookmark-cont">
-          <input name="bookmark" class="noborder agenda-input inline" id="rw-note-bookmark" type="url" placeholder="https://www.example.com" data-role="none">
-          <br>
-        </div>
-        <br>
-        <textarea class="noborder clean-textarea" id="rw-note-body" data-role="none" placeholder="Start taking notes..." rows="10"></textarea>
+      <h3 id="date-today"></h3>
+      <h1 class="noborder pacifico inline" id="note-header" onblur="feildReset('#note-header', 'title')" contenteditable></h1>
+      <h3><span  class="noborder category inline" id="note-class" onblur="feildReset('#note-class', 'class', 'All notes')" contenteditable></span>,</h3>
+      <h3 class="noborder category" id="note-section" onblur="feildReset('#note-section', 'section', 'General')" contenteditable></h3>
+      <br>
+      <p>Tags: <span class="noborder" id="note-tags" onblur="feildReset('#note-tags', 'tags')" data-role="none" contenteditable></span></p>
+      <fieldset data-role="controlgroup" data-type="horizontal">
+        <label for="favourite"> Favourite
+                <input type="checkbox" name="favourite" id="fav">
+              </label>
+        <label for="important"> Important
+                <input type="checkbox" name="favourite" id="imp">
+              </label>
+        <label for="Minor"> Minor
+                <input type="checkbox" name="favourite" id="min">
+              </label>
+      </fieldset>
+      <br>
+      <div id="agenda-cont">
+        <input name="agenda" class="noborder agenda-input inline" id="note-agenda" type="date" placeholder="Reminder" data-role="none"><br>
       </div>
+      <div id="bookmark-cont">
+        <input name="bookmark" class="noborder agenda-input inline" id="note-bookmark" type="url" placeholder="Bookmark" data-role="none"><br>
+      </div>
+      <br>
+      <textarea class="noborder clean-textarea" id="note-body" data-role="none" placeholder="Start taking notes..." rows="10"></textarea>
     </div>
+
     <div data-role="footer" data-position="fixed" data-fullscreen="true" data-tap-toggle="false">
-      <h3>
-        Supports Markdown. Read the <a href="#syntax">Formatting Guide
-        <span class="glyphicon glyphicon-align-left"></span></a></h3>
+      <h3>Supports Markdown. Read the <a href="#syntax">Formatting Guide <span class="glyphicon glyphicon-align-left"></span></a></h3>
     </div>
   </div>
 
-  <script src="cordova.js"></script>
-  <script src="js/jquery-1.11.1.min.js"></script>
-  <script src="js/jquery-mobile/jquery.mobile-1.4.5.min.js"></script>
-  <script src="css/bootstrap/js/bootstrap.min.js"></script>
-  <script src="js/scripts.js"></script>
-  <script src="js/marked.min.js"></script>
-  <script src="js/editor.js"></script>
-  <script src="js/storage.js"></script>
-
+  <script src="../../cordova.js"></script>
+  <script src="../../js/jquery-1.11.1.min.js"></script>
+  <script src="../../js/jquery-mobile/jquery.mobile-1.4.5.min.js"></script>
+  <script src="../../css/bootstrap/js/bootstrap.min.js"></script>
+  <script src="../../js/scripts.js"></script>
+  <script src="../../js/storage.js"></script>
+  <script src="../../js/editor.js"></script>
 </body>
 
 </html>

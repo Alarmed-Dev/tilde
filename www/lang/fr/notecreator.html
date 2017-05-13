@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <title>Note Settings</title>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="../../css/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../js/jquery-mobile/jquery.mobile-1.4.5.min.css">
+  <link rel="stylesheet" href="../../css/styles.css">
+</head>
+
+<body>
+  <div data-role="page" data-dialog="true" id="new-note">
+    <div data-role="header">
+      <h2>Take notes</h2>
+    </div>
+
+    <div data-role="main" class="ui-content">
+      <form action="newnote.html" data-ajax="false">
+        <label for="title">Page title: </label>
+        <input type="text" name="title" placeholder="Calculating square roots" required>
+        <label for="class">Class: </label>
+        <input name="class" type='text' placeholder='Category'>
+        <input name="section" type='text' placeholder='Section'>
+        <label for="tags">Tags: </label>
+        <input name="tags" placeholder="square roots, root numbers, perfect squares" required>
+        <br>
+        <h4 class="show-more">Show more...</h4><br>
+        <div id="more">
+          <label for="agenda">Agenda event: </label>
+          <input type="date" name="agenda">
+          <label for="agenda">Web bookmark: </label>
+          <input type="url" name="bookmark" placeholder="https://www.example.com">
+          <br>
+        </div>
+        <input class="btn btn-lg btn-info btn-block" type="submit" value="Start taking notes">
+      </form>
+    </div>
+  </div>
+  <script src="../../cordova.js"></script>
+  <script src="../../js/jquery-1.11.1.min.js"></script>
+  <script src="../../js/jquery-mobile/jquery.mobile-1.4.5.min.js"></script>
+  <script src="../../css/bootstrap/js/bootstrap.min.js"></script>
+  <script src="../../js/scripts.js"></script>
+  <script>
+    $(document).ready(function() {
+      $("#more").hide();
+
+      $(".show-more").click(function() {
+        if (!$("#more").is(":visible")) {
+          $(".show-more").text("Show less.");
+          $("#more").slideDown();
+        } else {
+          $(".show-more").text("Show more...");
+          $("#more").slideUp();
+        }
+      });
+
+    });
+
+    function formSubmit() {
+      if ($("#category"), val() == undefined) {
+        $("#category"), val("All notes");
+      }
+      if ($("#section"), val() == undefined) {
+        $("#category"), val("General");
+      }
+    }
+  </script>
+</body>
+
+</html>

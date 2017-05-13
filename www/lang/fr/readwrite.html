@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <title>Note Editor</title>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="../../css/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../js/jquery-mobile/jquery.mobile-1.4.5.min.css">
+  <link rel="stylesheet" href="../../css/styles.css">
+</head>
+
+<body>
+  <div data-role="page" id="home">
+    <div data-role="panel" id="sidebar" data-swipe-close="true" data-display="overlay">
+      <ul data-role="listview">
+        <li>
+          <h3 class="txt-center">Table of Contents</h3></li>
+        <li><a href="index.html" data-ajax="false" data-rel="close"><h3>Home</h3></a></li>
+        <li><a href="notecreator.html" data-ajax="false"><h3>Create a New Page</h3></a></li>
+        <li><a href="study.html" data-ajax="false"><h3>Notebook</h3></a></li>
+        <li><a href="about.html" data-ajax="false"><h3>About</h3></a></li>
+        <li><a href="settings.html" data-ajax="false"><h3>Settings</h3></a></li>
+    </div>
+
+    <div data-role="header" id="page-navbar">
+      <a href="#sidebar" class="ui-btn ui-icon-bars ui-corner-all ui-btn-icon-notext"></a>
+      <h1 id="header">Note Editor</h1>
+      <a href="notecreator.html" class="ui-btn ui-icon-plus ui-corner-all ui-btn-icon-notext" data-ajax="false"></a>
+      <div data-role="navbar" id="editor-navbar">
+        <ul>
+          <li><a href="#openNote" data-rel="popup"><span class="hidden-xs">Open </span><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span></a></li>
+          <li><a onclick="shareNote($('#rw-note-header').text(), $('#rw-note-body').val())"><span class="hidden-xs">Share </span><span class="glyphicon glyphicon-share"></span></a></li>
+          <li onclick="moveToReadOnly()"><a href="#"><span class="hidden-xs">Render </span><span class="glyphicon glyphicon-eye-open"></span></a></li>
+          <li id="save" onclick="addUpdatedVersion()"><a href="#"><span class="hidden-xs">Save </span><span class="glyphicon glyphicon-floppy-disk"></span></a></li>
+        </ul>
+      </div>
+      <div data-role="popup" class="open-note" id="openNote">
+        <h4>Open another note in the editor.</h4>
+        <form action="readwrite.html" data-ajax="false">
+          <input type="text" name="title" placeholder="Note title..." required>
+          <input type="submit" class="btn btn-primary btn-block">
+        </form>
+      </div>
+    </div>
+    <div class="syntax-guide" data-role="panel" id="syntax" data-swipe-close="true" data-display="overlay" data-postion-fixed="true">
+      <p>
+        One of the things that makes Tilde stand out from other note taking applications is that it's willing to sacrifice a small amount of ease-of-use to allow you to get more out of what you're working on. This is why Tilde supports formatting using Markdown,
+        and by extension HTML. Here's a quick reference on how to use these styles of formatting.
+      </p>
+
+      <h2>Headers</h2>
+
+      <p>
+        To use headers in your notes, start the line with one or more hashes. The number of hashes you use determines how small your header will be.
+      </p>
+
+      <code>
+              # Primary header<br>
+              ## Secondary header<br>
+              ### Tertiary header<br>
+              #### Quaternary header<br>
+              ##### Quinary header<br>
+              ###### Senary header<br>
+            </code>
+
+      <h1>Primary header</h1>
+      <h2>Secondary header</h2>
+      <h3>Tertiary header</h3>
+      <h4>Quaternary header</h4>
+      <h5>Quinary header</h5>
+      <h6>Senary header</h6>
+
+      <h2>Emphasis</h2>
+
+      <p>
+        Markdown allows you to emphasize your text in a much easier way than it would be done using vanilla HTML.
+      </p>
+
+      <code>
+When taking notes in Tilde, you can do all kinds of cool things, like __bolding text__ using either underscores or asterisks **like so**. Wrapping your text with one underscore or asterisk on each side can _italicize_ your text, *which is really useful*. Using two tildes, you can also ~~scratch things out~~ with a strikethrough.
+<br> &gt; Block quotes can also be useful.
+<br> &gt; Are they not?
+</code>
+      <p>
+        <br> When taking notes in Tilde, you can do all kinds of cool things, like <strong>bolding text</strong> using either underscores or asterisks <strong>like so</strong>. Wrapping your text with only one underscore or asterisk on either side can
+        <em>italicize</em> your text, <em>which is really useful</em>. Using two tildes, you can also <del>scratch things out</del> with a strikethrough.
+      </p>
+      <blockquote>
+        Block quotes can also be useful.<br>Are they not?
+      </blockquote>
+
+      <h2>External and internal inks</h2>
+
+      <p>
+        Tilde allows you to link both internally and externally. External links are links that lead to actual websites, while internal links provide a shortcut to another note.
+      </p>
+
+      <code>
+              [An external link](https://www.example.com) can be rendered
+              using Markdown, though &lt;a data-note=&quot;Note title&quot;&gt;internal links&lt;/a&gt; have to be done in vanilla HTML.
+            </code>
+
+      <p>
+        <br><a href="https://www.example.com">An external link</a> can be rendered using Markdown, though <a href="#">internal links</a> have to be done in vanilla HTML.
+      </p>
+      <h2>Ordered and unordered lists</h2>
+
+      <p>
+        Writing lists in Markdown goes pretty much exactly what you would expect.
+      </p>
+
+      <code>
+### Unordered list<br>
+* Item one<br>
+* Item two<br>
+* Item three<br>
+* Item four<br>
+<br>
+### Ordered list<br>
+1. Item 1<br>
+2. Item 2<br>
+3. Item 3<br>
+4. Item 4<br>
+</code><br>
+
+      <h3>Unordered list</h3>
+
+      <ul>
+        <li>Item one</li>
+        <li>Item two</li>
+        <li>Item three</li>
+        <li>Item four</li>
+      </ul>
+
+      <h3>Ordered list</h3>
+
+      <ol>
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+        <li>Item 4</li>
+      </ol>
+
+      <h2>Code</h2>
+      <p>
+        When it comes to code, you have two options: inline and block level. Inline code is code-styled text inserted directly into your paragraph, and block level code sits in its own space.
+      </p>
+      <code>
+Let’s say this is the content of the `index.html` file:<br>
+<br>
+```<br>
+&lt;!DOCTYPE html&gt;<br>
+&lt;html&gt;<br>
+    &lt;head&gt;<br>
+    &lt;title&gt;&lt;/title&gt;<br>
+    …<br>
+```
+</code>
+      <p>
+        Let’s say this is what your <code>index.html</code> file looks like:
+      </p>
+
+      <p>
+        <code>
+&lt;!DOCTYPE html&gt;<br>
+&lt;html&gt;<br>
+    &lt;head&gt;<br>
+    &lt;title&gt;&lt;/title&gt;<br>
+    …<br>
+</code>
+      </p>
+
+      <p>
+        Tilde fully supports both Markdown and HTML.
+      </p>
+    </div>
+
+    <div data-role="main" class="ui-content main-page">
+      <div id="readwrite-note">
+
+        <h3 id="date-today"></h3>
+        <h1 class="noborder pacifico inline" id="rw-note-header" onblur="feildReset('#rw-note-header', 'title')" contenteditable></h1>
+        <h3><span class="noborder category inline" id="rw-note-class"
+                  onblur="feildReset('#rw-note-class', 'class', 'All notes')"
+                  contenteditable></span>,</h3>
+        <h3 class="noborder category" id="rw-note-section" onblur="feildReset('#rw-note-section', 'section', 'General')" contenteditable></h3>
+        <br>
+        <p>Tags: <span class="noborder" id="rw-note-tags" onblur="feildReset('#note-tags', 'tags')" data-role="none" contenteditable></span></p>
+        <br>
+        <div id="bookmark-cont">
+          <input name="bookmark" class="noborder agenda-input inline" id="rw-note-bookmark" type="url" placeholder="https://www.example.com" data-role="none">
+          <br>
+        </div>
+        <br>
+        <textarea class="noborder clean-textarea" id="rw-note-body" data-role="none" placeholder="Start taking notes..." rows="10"></textarea>
+      </div>
+    </div>
+    <div data-role="footer" data-position="fixed" data-fullscreen="true" data-tap-toggle="false">
+      <h3>
+        Supports Markdown. Read the <a href="#syntax">Formatting Guide
+        <span class="glyphicon glyphicon-align-left"></span></a></h3>
+    </div>
+  </div>
+
+  <script src="../../cordova.js"></script>
+  <script src="../../js/jquery-1.11.1.min.js"></script>
+  <script src="../../js/jquery-mobile/jquery.mobile-1.4.5.min.js"></script>
+  <script src="../../css/bootstrap/js/bootstrap.min.js"></script>
+  <script src="../../js/scripts.js"></script>
+  <script src="../../js/marked.min.js"></script>
+  <script src="../../js/editor.js"></script>
+  <script src="../../js/storage.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <title>Settings</title>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="../../css/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../js/jquery-mobile/jquery.mobile-1.4.5.min.css">
+  <link rel="stylesheet" href="../../css/styles.css">
+</head>
+
+<body>
+  <div data-role="page" id="home">
+    <div data-role="panel" id="sidebar" data-swipe-close="true" data-display="overlay">
+      <ul data-role="listview">
+        <li>
+          <h3 class="txt-center">Table of Contents</h3></li>
+        <li><a href="index.html" data-rel="close" data-ajax="false"><h3>Home</h3></a></li>
+        <li><a href="notecreator.html" data-ajax="false"><h3>Create a New Page</h3></a></li>
+        <li><a href="study.html" data-ajax="false"><h3>Notebook</h3></a></li>
+        <li><a href="about.html" data-ajax="false"><h3>About</h3></a></li>
+        <li><a href="settings.html" data-ajax="false"><h3>Settings</h3></a></li>
+      </ul>
+    </div>
+
+    <div data-role="header" id="page-navbar">
+      <a href="#sidebar" class="ui-btn ui-icon-bars ui-corner-all ui-btn-icon-notext"></a>
+      <h1>Settings</h1>
+      <a href="notecreator.html" class="ui-btn ui-icon-plus ui-corner-all ui-btn-icon-notext" data-ajax="false"></a>
+    </div>
+
+    <div data-role="main" class="ui-content">
+      <ul data-role="listview">
+        <li><a href="about.html" data-ajax="false">About</a></li>
+        <li><a href="#disclaimer">Disclaimer</a></li>
+        <li>Version ~ <small>1.0.3</small></li>
+      </ul>
+      <br>
+      <h3>Managing notes</h3><br>
+      <ul data-role="listview">
+        <li><a href="#remove-categories">Remove categories</a></li>
+        <li><a href="#remove-sections">Remove sections</a></li>
+        <li onclick="deleteAllNotes()"><a href="#">Empty the notebook</a></li>
+      </ul>
+    </div>
+    <div data-role="footer" data-position="fixed" data-fullscreen="true" data-tap-toggle="false"></div>
+  </div>
+  <div data-role="page" data-dialog="true" id="remove-categories">
+    <div data-role="header">
+      <h2>Empty categories</h2>
+    </div>
+    <div data-role="main" class="ui-content">
+      <p>
+        Emptying a category will remove all of the notes associated with the given category. Note that every possible category and section already exists. You simply need to add notes to them.
+      </p>
+      <input type="text" id="removed-cat" placeholder="Category name" required>
+      <button type="button" class="btn btn-lg btn-danger btn-block" data-role="none" onclick="removeCategories()">Delete all notes in category</button>
+    </div>
+  </div>
+  <div data-role="page" data-dialog="true" id="remove-sections">
+    <div data-role="header">
+      <h2>Empty sections</h2>
+    </div>
+    <div data-role="main" class="ui-content">
+      <br>
+      <p>
+        Emptying a section will remove all of the notes associated with the given section. Note that every possible category and section already exists. You simply need to add notes to them.
+      </p><br>
+      <input type="text" id="root-cat" placeholder="Category name" required>
+      <input type="text" id="removed-sec" placeholder="Section title" required>
+      <button type="button" class="btn btn-lg btn-danger btn-block" data-role="none" onclick="removeSections()">Delete all notes in section</button>
+    </div>
+  </div>
+  <div data-role="page" data-dialog="true" id="disclaimer">
+    <div data-role="header">
+      <h2>Disclaimer</h2>
+    </div>
+    <div data-role="main" class="ui-content">
+      <h2>Disclaimer</h2>
+      <p>
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+      </p>
+      <p>
+        Now that we have that out of the way, you can continue.
+      </p>
+    </div>
+  </div>
+
+  <script src="../../cordova.js"></script>
+  <script src="../../js/jquery-1.11.1.min.js"></script>
+  <script src="../../js/jquery-mobile/jquery.mobile-1.4.5.min.js"></script>
+  <script src="../../css/bootstrap/js/bootstrap.min.js"></script>
+  <script src="../../js/scripts.js"></script>
+  <script src="../../js/storage.js"></script>
+  <script src="../../js/settings.js"></script>
+</body>
+
+</html>

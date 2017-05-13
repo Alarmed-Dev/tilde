@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <title>Home</title>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="../../css/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../js/jquery-mobile/jquery.mobile-1.4.5.min.css">
+  <link rel="stylesheet" href="../../css/styles.css">
+</head>
+
+<body class="marginless">
+
+  <div data-role="page" id="home">
+    <div data-role="panel" id="sidebar" data-swipe-close="true" data-display="overlay">
+      <ul data-role="listview">
+        <li>
+          <h3 class="txt-center">Table of Contents</h3></li>
+        <li><a href="#home" data-ajax="false" data-rel="close"><h3>Home</h3></a></li>
+        <li><a href="notecreator.html" data-ajax="false"><h3>Create a New Page</h3></a></li>
+        <li><a href="study.html" data-ajax="false"><h3>Notebook</h3></a></li>
+        <li><a href="about.html" data-ajax="false"><h3>About</h3></a></li>
+        <li><a href="settings.html" data-ajax="false"><h3>Settings</h3></a></li>
+      </ul>
+    </div>
+
+    <div data-role="header" id="page-navbar">
+      <a href="#sidebar" class="ui-btn ui-btn-large ui-icon-bars ui-corner-all ui-btn-icon-notext"></a>
+      <h1>Home</h1>
+      <a href="notecreator.html" data-ajax="false" class="ui-btn ui-icon-plus ui-corner-all ui-btn-icon-notext"></a>
+    </div>
+
+    <div data-role="main">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-sm-6 col-md-6 col-lg-6 vertical welcomer">
+            <div>
+              <h2 class="txt-center flex-header pacifico main-header"> Welcome Back </h2>
+              <hr class="black-hr">
+              <div class="row">
+                <a href="notecreator.html" data-ajax="false" data-role="none">
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 quick-link">
+                    <div class="txt-center">
+                      <h3 class="txt-center"> Take notes </h3>
+                      <h1><span class="glyphicon glyphicon-pencil"></span></h1>
+                    </div>
+                  </div>
+                </a>
+                <a href="study.html" data-ajax="false">
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 quick-link">
+                    <div class="txt-center">
+                      <h3> Notebook </h3>
+                      <h1><span class="glyphicon glyphicon-book"></span></h1>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="row">
+                <a href="study.html?agenda=true" data-ajax="false">
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 quick-link">
+                    <div class="txt-center">
+                      <h3 class="txt-center"> Agenda </h3>
+                      <h1><span class="glyphicon glyphicon-calendar"></span></h1>
+                    </div>
+                  </div>
+                </a>
+                <a href="study.html?bookmark=true" data-ajax="false">
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 quick-link">
+                    <div class="txt-center">
+                      <h3> Bookmarks </h3>
+                      <h1><span class="glyphicon glyphicon-bookmark"></span></h1>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-6 col-lg-6 recent-list vertical">
+            <div class="container">
+
+              <h2 class="quick-link">Recent:</h2>
+              <ul id="recent-notes" data-role="listview"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="../../cordova.js"></script>
+  <script src="../../js/jquery-1.11.1.min.js"></script>
+  <script src="../../js/jquery-mobile/jquery.mobile-1.4.5.min.js"></script>
+  <script src="../../css/bootstrap/js/bootstrap.min.js"></script>
+  <script src="../../js/scripts.js"></script>
+  <script src="../../js/storage.js"></script>
+</body>
+
+</html>
